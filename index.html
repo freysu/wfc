@@ -25,7 +25,17 @@
         <label for="input-file">上传文件</label>
         <input type="file" id="input-file" />
       </form>
-      <textarea name="" id="file-contents" cols="30" rows="10"></textarea>
+      <div class="file-contents-container">
+        <button
+          class="btn-clear-file-contents"
+          title="清除文本"
+          onclick="$('#file-contents').val('')"
+        >
+          X
+        </button>
+        <textarea name="" id="file-contents" cols="30" rows="10"></textarea>
+      </div>
+      <!-- <textarea name="" id="file-contents" cols="30" rows="10"></textarea> -->
       <button class="btn-calc-word-count">统计词频</button>
       <table class="word-freq-results">
         <thead>

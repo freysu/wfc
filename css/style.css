@@ -117,3 +117,30 @@ body {
         height: 10rem;
     }
 }
+
+.btn-clear-file-contents {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #bbb;
+    color: #fff;
+    border: none;
+    border-radius: 0.2rem;
+    padding: 0.2rem 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-clear-file-contents:hover {
+    background-color: #555;
+}
+
+.btn-clear-file-contents:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #fff, 0 0 0 4px #007acc;
+}
+
+.file-contents-container {
+    position: relative;
+    margin-bottom: 1rem;
+}
