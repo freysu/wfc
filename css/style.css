@@ -1,0 +1,119 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: #f6f6f6;
+    font-family: "Noto Sans SC", sans-serif;
+    color: #333;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #007acc;
+    padding: 1rem;
+}
+
+.header h1 {
+    margin: 0 auto;
+    font-size: 2rem;
+    color: #fff;
+}
+
+.header img {
+    height: 3rem;
+    margin-right: 1rem;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.file-input {
+    margin-bottom: 1rem;
+}
+
+.file-input input[type="file"] {
+    display: none;
+}
+
+.file-input label {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background-color: #007acc;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+}
+
+.file-input label:hover {
+    background-color: #005073;
+}
+
+.file-input label:active {
+    transform: translateY(1px);
+}
+
+#file-contents {
+    width: 100%;
+    height: 20rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    resize: none;
+}
+
+.btn-calc-word-count {
+    display: block;
+    margin: 0 auto;
+    padding: 0.5rem 1.5rem;
+    background-color: #007acc;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-calc-word-count:hover {
+    background-color: #005073;
+}
+
+.btn-calc-word-count:active {
+    transform: translateY(1px);
+}
+
+.word-freq-results {
+    width: 100%;
+    margin-top: 2rem;
+    border-collapse: collapse;
+}
+
+.word-freq-results th {
+    text-align: left;
+    padding: 0.5rem;
+    background-color: #007acc;
+    color: #fff;
+}
+
+.word-freq-results td {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+}
+
+@media only screen and (max-width: 768px) {
+    .header h1 {
+        font-size: 1.5rem;
+    }
+    #file-contents {
+        height: 10rem;
+    }
+}

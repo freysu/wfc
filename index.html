@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>上传文本文件并统计词频</title>
+    <script
+      src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery/3.6.0/jquery.min.js"
+      type="application/javascript"
+    ></script>
+  </head>
+  <body>
+    <textarea
+      name=""
+      id="file-contents"
+      cols="30"
+      rows="10"
+      style="width: 20rem; height: 15rem"
+    ></textarea>
+    <input type="file" id="input-file" />
+    <button id="btn-calc-word-count">统计词频</button>
+    <table id="word-freq-results">
+      <thead>
+        <tr>
+          <th>单词</th>
+          <th>次数</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <script src="./js/stopWordsInEnglish.js"></script>
+    <script src="./js/index.js"></script>
+  </body>
+</html>
