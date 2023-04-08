@@ -65,14 +65,12 @@ function statWordFreq(targetValue, stopArr, options) {
   var replacedVal = trimmedVal
     .replace(/\r\n/g, '\n')
     .replace(/\n/g, '\n')
-    .replace(/\s+/g, ',') // 统计字符数
-  var totalCharNum = replacedVal.length
-  console.log('totalCharNum: ', totalCharNum) // 替换所有换行符
+    .replace(/\s+/g, ',')
+  var totalCharNum = replacedVal.length // 统计字符数
+  console.log('统计字符数: ', totalCharNum)
   var noLineBreakVal = replacedVal.replace(/\n/g, '') // 查找并匹配单词
   var matchedWords = noLineBreakVal.match(/[a-z]+[-']?[a-z]*/gi) || []
-  console.log(matchedWords) // 对单词进行统计排序
   var wordStat = statWordFreq(noLineBreakVal, options, stopArr)
-  console.log(wordStat)
   return wordStat
 
   function statWordFreq(val, options, stopArr) {
