@@ -1,3 +1,10 @@
+<!--
+ * @Author: freysu
+ * @Date: 23-04-08 13:25:53
+ * @LastEditors: freysu
+ * @LastEditTime: 2023-04-11 02:02:05
+ * @Description: word-frequency-tool
+-->
 <!--统计词频-->
 <html>
   <head>
@@ -9,9 +16,19 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/reset.min.css" />
+    <link rel="stylesheet" href="./css/style.min.css" />
     <script
       src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery/3.6.0/jquery.min.js"
+      type="application/javascript"
+    ></script>
+    <!-- SheetJS + DOM + FileSaver.js -->
+    <script
+      src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/xlsx/0.18.2/xlsx.full.min.js"
+      type="application/javascript"
+    ></script>
+    <script
+      src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/FileSaver.js/2014-08-29/FileSaver.min.js"
       type="application/javascript"
     ></script>
   </head>
@@ -22,24 +39,75 @@
     </header>
     <div class="container">
       <form class="file-input">
-        <label for="input-file">上传文件</label>
-        <input type="file" id="input-file" />
+        <label for="textFileInput">上传 .txt 格式文件</label>
+        <input data-type="" type="file" id="textFileInput" />
+        <label
+          for="excelFileInput"
+          title="需要保证数据在工作表 1，且第 1 列标题为 keyword"
+          >上传 .xlsx 格式文件</label
+        >
+        <input data-type="" type="file" id="excelFileInput" />
       </form>
       <div class="file-contents-container">
-        <button
-          class="btn-clear-file-contents"
-          title="清除文本"
-          onclick="$('#file-contents').val('')"
-        >
-          X
-        </button>
-        <textarea name="" id="file-contents" cols="30" rows="10"></textarea>
+        <button class="btn-clear-file-contents" title="清除文本">X</button>
+        <textarea
+          name=""
+          id="file-contents"
+          cols="30"
+          rows="10"
+          placeholder="在此输入你的文本，也可以通过上传 .txt 格式或 .xlsx 格式文件导入文本"
+        ></textarea>
       </div>
-      <!-- <textarea name="" id="file-contents" cols="30" rows="10"></textarea> -->
-      <button class="btn-calc-word-count">统计词频</button>
+      <div>
+        <div class="selectRows">
+          <span>
+            下表将展示前
+            <select id="row-selection">
+              <option value="20">20</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+              <option value="200">200</option>
+              <option value="全部">全部</option>
+            </select>
+            个
+          </span>
+          <span>
+            <select id="row-selection1">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+            个
+          </span>
+          <span>
+            <select id="row-selection2">
+              <option value="yes">包含</option>
+              <option value="no">不包含</option>
+            </select>
+            语法词的单词出现次数
+          </span>
+        </div>
+        <button class="btn-calc-word-count">显示结果</button>
+        <button class="btn-export-word-count" style="display: none">
+          导出
+        </button>
+      </div>
+      <div>
+        <table class="word-results">
+          <tr>
+            <td>当前字符数</td>
+            <td id="num_character">0</td>
+            <td>当前单词数</td>
+            <td id="num_word">0</td>
+            <td>当前句子数</td>
+            <td id="num_sentence">0</td>
+          </tr>
+        </table>
+      </div>
       <table class="word-freq-results">
         <thead>
           <tr>
+            <th>序号</th>
             <th>单词</th>
             <th>次数</th>
           </tr>
@@ -49,6 +117,7 @@
     </div>
 
     <script src="./js/stopWordsInEnglish.js"></script>
+    <script src="./js/jquery.wordcounttool.min.js"></script>
 
     <script src="./js/index.js"></script>
   </body>
