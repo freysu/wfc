@@ -1,105 +1,6 @@
-var grammarWords = [
-  'about',
-  'after',
-  'ago',
-  'all',
-  'also',
-  'an',
-  'and',
-  'any',
-  'are',
-  'as',
-  'at',
-  'be',
-  'been',
-  'before',
-  'both',
-  'but',
-  'by',
-  'can',
-  'did',
-  'do',
-  'does',
-  'done',
-  'edit',
-  'even',
-  'every',
-  'for',
-  'from',
-  'had',
-  'has',
-  'have',
-  'he',
-  'here',
-  'him',
-  'his',
-  'however',
-  'if',
-  'in',
-  'into',
-  'is',
-  'it',
-  'its',
-  'less',
-  'many',
-  'may',
-  'more',
-  'most',
-  'much',
-  'my',
-  'no',
-  'not',
-  'often',
-  'quote',
-  'of',
-  'on',
-  'one',
-  'only',
-  'or',
-  'other',
-  'our',
-  'out',
-  're',
-  'says',
-  'she',
-  'so',
-  'some',
-  'soon',
-  'such',
-  'than',
-  'that',
-  'the',
-  'their',
-  'them',
-  'then',
-  'there',
-  'these',
-  'they',
-  'this',
-  'those',
-  'though',
-  'through',
-  'to',
-  'under',
-  'use',
-  'using',
-  've',
-  'was',
-  'we',
-  'were',
-  'what',
-  'where',
-  'when',
-  'whether',
-  'which',
-  'while',
-  'who',
-  'whom',
-  'with',
-  'within',
-  'you',
-  'your'
-]
+// prettier-ignore
+var grammarWords = ['about', 'after', 'ago', 'all', 'also', 'an', 'and', 'any', 'are', 'as', 'at', 'be', 'been', 'before', 'both', 'but', 'by', 'can', 'did', 'do', 'does', 'done', 'edit', 'even', 'every', 'for', 'from', 'had', 'has', 'have', 'he', 'here', 'him', 'his', 'however', 'if', 'in', 'into', 'is', 'it', 'its', 'less', 'many', 'may', 'more', 'most', 'much', 'my', 'no', 'not', 'often', 'quote', 'of', 'on', 'one', 'only', 'or', 'other', 'our', 'out', 're', 'says', 'she', 'so', 'some', 'soon', 'such', 'than', 'that', 'the', 'their', 'them', 'then', 'there', 'these', 'they', 'this', 'those', 'though', 'through', 'to', 'under', 'use', 'using', 've', 'was', 'we', 'were', 'what', 'where', 'when', 'whether', 'which', 'while', 'who', 'whom', 'with', 'within', 'you', 'your'];
+
 const inputFile = document.getElementById('input-file')
 const fileContents = document.getElementById('file-contents')
 const btnCalcWordCount = document.querySelector('.btn-calc-word-count')
@@ -181,8 +82,8 @@ $(btnCalcWordCount).click(function () {
 
   // 清空表格内容
   wordFreqResults.innerHTML = ''
-
-  renderWordFreqResults(wordFreqArr, isIncludeGrammarWords)
+  $('#wordTypeIndex').text(wordTypeIndex + 1)
+  renderWordFreqResults(wordFreqArr, wordTypeIndex, isIncludeGrammarWords)
   // // 插入新的单词频率统计结果
   // for (let i = 0; i < wordFreqArr.length; i++) {
   //   const wordFreq = wordFreqArr[i]
@@ -202,13 +103,18 @@ $(btnCalcWordCount).click(function () {
 })
 
 // 插入新的单词频率统计结果
-function renderWordFreqResults(wordFreqArr = [], isInclude = false) {
+function renderWordFreqResults(
+  wordFreqArr = [],
+  wordTypeIndex,
+  isInclude = false
+) {
   var totalNumWord = $('#num_word').text()
   wordFreqResults.innerHTML = ''
   var selectValue = document.getElementById('row-selection').value
   const selectedRows = !isNaN(selectValue)
     ? parseInt(selectValue)
     : wordFreqArr.length
+  var idx = 0
   for (let i = 0; i < selectedRows && i < wordFreqArr.length; i++) {
     const wordFreq = wordFreqArr[i]
     if (
@@ -221,16 +127,26 @@ function renderWordFreqResults(wordFreqArr = [], isInclude = false) {
       const tdIdx = document.createElement('td')
       const tdWord = document.createElement('td')
       const tdCount = document.createElement('td')
+      const tdPer = document.createElement('td')
 
       tdWord.innerText = wordFreq[0]
       tdCount.innerText = wordFreq[1]
-      tdIdx.innerText = +i + 1
+      tdIdx.innerText = +idx + 1
+      var tmp = 0
+      if (wordTypeIndex > 0) {
+        tmp = totalNumWord - 1
+      } else {
+        tmp = totalNumWord
+      }
+      tdPer.innerText = Math.round(((100 * wordFreq[1]) / tmp) * 10) / 10 + '%'
 
       tr.appendChild(tdIdx)
       tr.appendChild(tdWord)
       tr.appendChild(tdCount)
+      tr.appendChild(tdPer)
 
       wordFreqResults.appendChild(tr)
+      idx++
     }
   }
 }
